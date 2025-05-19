@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+{% block title %} {{page_title}} {% endblock %}
+{% block content %}
+<h1>Home Page</h1>
+<div class="container col-6">
+    {% for user in users %}
+    <div class="card card-body">
+        <h3>Username: {{user.username}}</h3>
+        <h4>Age: {{user.age}}</h4>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+preparing the environment 
+Django architecture 
+MVT vs MVC
+create Django project 
+creating different Django Applications -in the same project-
+Django urls 
+Views 
+jinja templates 
+static files 
+template inheritance 
+connecting to Postgres/ MySQL 
+using models .. migrations
+using admin panel 
+relationships between models 
+backward relationships
+using Django forms 
+form validation 
+class based views 
+generic views
+view sets 
+uploading files 
+login , registration  using Django authentication 
+authorizing routes
+APIs intro 
+using Django rest 
+serializers
