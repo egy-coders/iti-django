@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+{% block title %} {{page_title}} {%endblock%}
+
+{% block content %}
+<div class="container p-2">
+    {% for cat in cats %}
+    <div class="card">
+        <div class="card-title">
+           <h3>{{cat.name}}</h3>
+           <ul>
+            {% for item in cat.products.all %}
+            <li>{{item.name}} - {{item.price}}</li>
+            {% endfor %}
+           </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

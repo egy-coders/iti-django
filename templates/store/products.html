@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+{% block title %} {{page_title}} {% endblock %}
+{% block content %}
+<h1 class="p-2">All Products</h1>
+<br>
+<div class="container col-8">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{product.name}}</td>
+                <td>$ {{product.price}}</td>
+                <td class="text-center">
+                    <a href="{% url 'product' product.id %}">
+                        <i class="fa fa-eye text-primary"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
