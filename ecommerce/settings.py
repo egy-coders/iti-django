@@ -74,15 +74,34 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# import pymysql
+# pymysql.install_as_MySQLdb()
+
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+    # pip install psycopg2 
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'ecommerce',
+    #     'USER':'postgres',
+    #     'PASSWORD' : '123',
+    #     'HOST' : 'localhost',
+    #     'PORT':'5432'
+    # }
+
+    # pip install pymysql 
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'ecommerce',
+    #     'USER':'root',
+    #     'PASSWORD' : '',
+    #     'HOST' : 'localhost',
+    #     'PORT':'3306'
+    # }
 }
 
 
