@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% block title %} {{page_title}} {%endblock%}
+
+{% block content %}
+<div class="container p-4">
+
+    <h3 class="text-primary">Contact Us</h3>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_name">Name:</label>
+                    {{form.name}}
+                    <!-- <input type="text" class="form-control" placeholder="Enter Your Name"> -->
+                </div>
+                <div class="mb-3">
+                    {{form.phone.label_tag}}
+                    {{form.phone}}
+                </div>
+                <div class="mb-3">
+                    {{form.email.label_tag}}
+                    {{form.email}}
+                </div>
+                <div class="mb-3">
+                    {{form.message.label_tag}}
+                    {{form.message}}
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="reset" class="btn btn-secondary m-1">Reset</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

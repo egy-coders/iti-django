@@ -1,20 +1,32 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 {% block title %} {{page_title}} {% endblock %}
+{% block styles %} 
+<link rel="stylesheet" href="{% static 'css/features.css' %}">
+ {% endblock %}
 {% block content %}
-<h1>Home Page</h1>
-<div class="container col-6">
-    {% for user in users %}
-    <div class="card card-body">
-        {% if user.username %}
-        <h3 class="text-success">Username: {{user.username}}</h3>
-        {% else %}
-        <h3 class="text-danger">Username: "Anoynomus"</h3>
-        {% endif %}
-        <h4>Age: {{user.age}}</h4>
-        <h4>Hire Date: {{user.hire_date|date:"F j, Y"}}</h4>
-        <h4>Salary: {{user.salary}}</h4>
+<div class="container my-2">
+    <h1 class="text-center">Welcome To Store</h1>
+    <div class="container px-4 py-5" id="featured-3">
+        <h2 class="pb-2 border-bottom">Categroies</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            {% for cat in cats %}
+            <div class="feature col">
+                <div
+                    class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <i class="fa fa-{{cat.icon}}"></i> 
+                </div>
+                <h3 class="fs-2 text-body-emphasis">{{cat.name}}</h3>
+                <p>{{cat.description|slice:":220" }} ...</p>
+                <a href="{% url 'cat' cat.id %}" class="icon-link">
+                    Browse {{cat.name}}
+                    <svg class="bi" aria-hidden="true">
+                        <use xlink:href="#chevron-right"></use>
+                    </svg>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <br>
-    {% endfor %}
 </div>
 {% endblock %}
