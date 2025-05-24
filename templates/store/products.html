@@ -13,7 +13,7 @@
                 <th scope="col">Discount %</th>
                 <th scope="col">Pub Date</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">View</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +26,14 @@
                 <td>{{product.pub_date}}</td>
                 <td></td>
                 <td class="text-center">
-                    <a href="{% url 'product' product.id %}">
-                        <i class="fa fa-eye text-primary"></i>
+                    <a href="{% url 'product' product.id %}" class="btn btn-outline-primary btn-sm">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-warning btn-sm">
+                        <i class="fa fa-pen"></i>
+                    </a>
+                    <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm">
+                        <i class="fa fa-trash"></i>
                     </a>
                 </td>
             </tr>

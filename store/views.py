@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.contrib import messages
 from .models import *
 from .forms import ContactForm, ProductForm
 
@@ -37,7 +38,7 @@ def products(request):
 
 # Show single Product
 def proudct(request, product_id):
-    product = Product.objects.get(pk=product_id)
+    product = get_object_or_404(Product, id=product_id)
     context = {
         "page_title":'Products',
         'product': product
@@ -80,13 +81,54 @@ def contact_view(request):
 
 def add_product(request):
     form = ProductForm(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
-        return redirect('products')
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product Addedd Succesfully!', extra_tags='success')
+            print(messages)
+            return redirect('products')
+        else:
+            messages.error(request, 'Error in form!', extra_tags='danger')
+            print(messages.error)
     else:
-        form = ProductForm()
+            form = ProductForm()
+
     context = {
         'page_title': 'Add New Product',
         'form':form
     }
-    return render(request, 'store/add_product.html', context)
+    return render(request, 'store/product_form.html', context)
+
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product Updated Succesfully!', extra_tags='success')
+            return redirect('products')
+        else:
+            messages.error(request, 'Error !', extra_tags='danger')
+    else:
+        form = ProductForm(instance=product)
+        print(form)
+
+    context = {
+        'page_title': 'Edit Product',
+        'form':form
+    }
+    return render(request, 'store/product_form.html', context)
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('products')
+    
+    context = {
+        'product' : product,
+        'page_title':'Confirm Delete'
+    }
+    return render(request, 'store/confirm_delete.html', context)
+
+
